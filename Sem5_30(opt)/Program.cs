@@ -17,7 +17,7 @@ int[] FillArray(int size)
     {
         arr[j] = new Random().Next(1, 8);
         jSave = arr[j];
-        for (i=0;i < j;)
+        for (i = 0; i < j; )
         {
             while (arr[i] == arr[j])
             {
@@ -30,7 +30,6 @@ int[] FillArray(int size)
             }
             else
                 i++;
-                
         }
         j++;
     }
@@ -46,13 +45,33 @@ void PrintArray(int[] Arr)
     Console.WriteLine();
 }
 
-// int []SortArray(int[] arr)
-// {
-
-// }
-
+int[] SortArray(int[] arr)
+{
+    int i = 0;
+    int buffer = 0;
+    int countIn = 0;
+    while (countIn < arr.Length)
+    {
+        int max = arr[countIn];
+        for (i = countIn; i < arr.Length; i++)
+        {
+            if (arr[i] > max)
+            {
+                max = arr[i];
+                buffer = arr[countIn];
+                arr[countIn] = max;
+                arr[i] = buffer;
+            }
+        }
+        countIn++;
+        
+    }
+    return arr;
+}
 
 Console.WriteLine("Введите  размерность массива");
 int len = Convert.ToInt32(Console.ReadLine());
-int[] arr = FillArray(len);
-PrintArray(arr);
+int[] Arr = FillArray(len);
+PrintArray(Arr);
+SortArray(Arr);
+PrintArray(Arr);
