@@ -38,29 +38,29 @@ int[,] ArrangeArray(int[,] arr)
     int save = 0;
     int starti = 0;
     int startj = 0;
-    while (starti < arr.GetLength(0) && startj < arr.GetLength(1))
+    while (startj < arr.GetLength(0))
     {
-        for (starti=0; starti < arr.GetLength(0); starti++)
+        while (starti < arr.GetLength(1))
         {
-            for (startj=0; startj < arr.GetLength(1); startj++)
+            
+            int min = arr[starti, startj];
+            for (int j = startj; j < arr.GetLength(0); j++)
             {
-                int min = arr[starti, startj];
-                for (int i = starti; i < arr.GetLength(0); i++)
+                for (int i = starti; i < arr.GetLength(1); i++)
                 {
-                    
-                    for (int j = startj; j < arr.GetLength(1); j++)
+                    if (arr[j, i] < min)
                     {
-                        if (arr[i, j] <= min)
-                        {
-                            min = arr[i, j];
-                            save = arr[starti, startj];
-                            arr[starti, startj] = min;
-                            arr[i, j] = save;
-                        }
+                        min = arr[j, i];
+                        save = arr[startj, starti];
+                        arr[startj, starti] = min;
+                        arr[j, i] = save;
                     }
                 }
             }
+            starti++;
         }
+        startj++;
+        starti=0;
     }
 
     return arr;
