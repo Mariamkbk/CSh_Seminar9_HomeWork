@@ -1,4 +1,4 @@
-﻿// Задача 47. Задайте двумерный массив размером m×n, 
+﻿// Задача 47. Задайте двумерный массив размером m×n,
 // заполненный случайными вещественными числами.
 // m = 3, n = 4.
 // 0,5 7 -2 -0,2
@@ -12,15 +12,21 @@ void FillAndShowArray(int horizontal, int vertical)
     {
         for (int j = 0; j < horizontal; j++)
         {
-            Array[j, i] = new Random().NextDouble()*10;
-            Console.Write($"{Array[j, i]} ");
+            Array[j, i] = Math.Round(new Random().NextDouble() * 15, 2);
+            Console.Write($"{Array[j, i], 3}\t");
         }
         Console.WriteLine();
     }
 }
-
-Console.WriteLine("Введите количество строк в таблице");
-int m = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите количество столбцов в таблице");
-int n = Convert.ToInt32(Console.ReadLine());
-FillAndShowArray(m, n);
+try
+{
+    Console.WriteLine("Введите количество строк в таблице");
+    int m = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine("Введите количество столбцов в таблице");
+    int n = Convert.ToInt32(Console.ReadLine());
+    FillAndShowArray(m, n);
+}
+catch
+{
+    Console.WriteLine("Проверьте правильность введенных данных");
+}
