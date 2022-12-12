@@ -81,12 +81,13 @@ try
     Console.WriteLine("Введите количество столбцов в массиве");
     int n = Convert.ToInt32(Console.ReadLine());
     int[,] array = FillArray(m, n);
+    Console.WriteLine("Массив создан: ");
     PrintArray(array);
     ArrangeArray(array);
+    Console.WriteLine("Массив отсортирован: ");
     PrintArray(array);
 }
 catch
 {
     Console.WriteLine("Проверьте правильность введенных данных");
 }
-
