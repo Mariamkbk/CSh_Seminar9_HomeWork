@@ -16,60 +16,69 @@ int[,] FillArray(int horizontal, int vertical)
     {
         for (int j = 0; j < horizontal; j++)
         {
-            Array[j, i] = new Random().Next(1, 15);
+            Array[j, i] = new Random().Next(1, 20);
         }
     }
     return Array;
 }
 void PrintArray(int[,] arr)
 {
-    for (int i = 0; i < arr.GetLength(0); i++)
+    for (int i = 0; i < arr.GetLength(1); i++)
     {
-        for (int j = 0; j < arr.GetLength(1); j++)
+        for (int j = 0; j < arr.GetLength(0); j++)
         {
-            Console.Write($"{arr[j, i], 3}\t");
+            Console.Write($"{arr[j, i]}\t");
         }
         Console.WriteLine();
     }
     Console.WriteLine();
 }
+
 int[,] ArrangeArray(int[,] arr)
 {
+    int i = 0;
+    int j = 0;
+    int min = arr[i, j];
     int save = 0;
-    int starti = 0;
-    int startj = 0;
-    while (startj < arr.GetLength(0))
+    int changePointi = 0;
+    int changePointj = 0;
+    while (changePointi < arr.GetLength(1))
     {
-        while (starti < arr.GetLength(1))
+        while (changePointj < arr.GetLength(0))
         {
-            
-            int min = arr[starti, startj];
-            for (int j = startj; j < arr.GetLength(0); j++)
+            min = arr[j, i];
+            while (i < arr.GetLength(1))
             {
-                for (int i = starti; i < arr.GetLength(1); i++)
+                while (j < arr.GetLength(0))
                 {
                     if (arr[j, i] < min)
                     {
                         min = arr[j, i];
-                        save = arr[startj, starti];
-                        arr[startj, starti] = min;
+                        save = arr[changePointj, changePointi];
+                        arr[changePointj, changePointi] = min;
                         arr[j, i] = save;
                     }
+                    j++;
                 }
+                i++;
+                j = 0;
             }
-            starti++;
+            changePointj++;
+            j = changePointj;
+            i = changePointi;
         }
-        startj++;
-        starti=0;
+        changePointi++;
+        i = changePointi;
+        changePointj = 0;
+        j = changePointj;
     }
-
     return arr;
 }
 try
 {
-    Console.WriteLine("Введите количество строк в таблице");
+    Console.WriteLine("Введите количество строк в массиве");
     int m = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("Введите количество столбцов в таблице");
+    Console.WriteLine("Введите количество столбцов в массиве");
     int n = Convert.ToInt32(Console.ReadLine());
     int[,] array = FillArray(m, n);
     PrintArray(array);
@@ -80,3 +89,4 @@ catch
 {
     Console.WriteLine("Проверьте правильность введенных данных");
 }
+
