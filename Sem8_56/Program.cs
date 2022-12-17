@@ -47,9 +47,9 @@ int[] SumNumsInString(int[,] arr)
     }
     return numsSum;
 }
-int MinSumString(int[] arr)
+void MinSumString(int[] arr)
 {
-    
+    string results = String.Empty;
     int min = arr[0];
     int minI = 0;
     for (int i = 0; i < arr.Length; i++)
@@ -60,7 +60,16 @@ int MinSumString(int[] arr)
             minI = i;
         }
     }
-    return minI+1;
+    results += $"{minI + 1}, ";
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] == min && i != minI)
+        {
+            results += $"{i + 1}, ";
+        }
+    }
+    results = results.Substring(0, results.Length - 2);
+    Console.WriteLine($"Наименьшая сумма элементов находится в строке/-ках: {results}");
 }
 try
 {
@@ -69,11 +78,11 @@ try
     Console.WriteLine("Введите количество строк в массиве");
     int n = Convert.ToInt32(Console.ReadLine());
     int[,] array = FillArray(m, n);
+    Console.WriteLine();
     Console.WriteLine("Массив создан: ");
     PrintArray(array);
-    Console.WriteLine(
-        $"В {MinSumString(SumNumsInString(array))} строке сумма элементов является наименьшей"
-    );
+    MinSumString(SumNumsInString(array));
+    Console.WriteLine();
 }
 catch
 {
