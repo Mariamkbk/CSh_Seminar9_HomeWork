@@ -32,16 +32,6 @@ void PrintArray(int[,] arr)
     }
     Console.WriteLine();
 }
-void PrintArrayy(int[] arr)
-{
-    for (int i = 0; i < arr.Length; i++)
-    {
-        Console.Write($"{arr[i]}\t");
-    }
-        Console.WriteLine();
-    }
-    
-
 int[] SumNumsInString(int[,] arr)
 {
     int[] numsSum = new int[arr.GetLength(1)];
