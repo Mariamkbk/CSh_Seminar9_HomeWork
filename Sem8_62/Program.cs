@@ -18,10 +18,17 @@ int[,] FillArray(int size)
         if (j != size - 1)
         {
             Array[j, i] = number++;
-            j++;
+            j++;                                              //двигаемся вправо
         }
-        else if (upperWall >= size) j++;
-        
+        else if (upperWall >= size)
+        {
+            while (j > leftWall)
+            {
+                Array[j, i] = number++;
+                j--;
+            }
+            break;
+        }
         else
         {
             while (i <= size - 1 && j >= leftWall)
@@ -29,7 +36,7 @@ int[,] FillArray(int size)
                 if (i != size - 1)
                 {
                     Array[j, i] = number++;
-                    i++;
+                    i++;                                        //двигаемся вниз
                 }
                 else
                 {
@@ -39,7 +46,7 @@ int[,] FillArray(int size)
                         if (j != leftWall)
                         {
                             Array[j, i] = number++;
-                            j--;
+                            j--;                                 //двигаемся влево
                         }
                         else
                         {
@@ -49,7 +56,7 @@ int[,] FillArray(int size)
                                 if (i != upperWall)
                                 {
                                     Array[j, i] = number++;
-                                    i--;
+                                    i--;                        //двигаемся вверх
                                 }
                                 else
                                     upperWall++;
@@ -76,13 +83,13 @@ void PrintArray(int[,] arr)
     Console.WriteLine();
 }
 
-// try
-// {
+try
+{
 Console.WriteLine("Введите число соответствующее количеству столбцов и строк в массиве");
 int n = Convert.ToInt32(Console.ReadLine());
 PrintArray(FillArray(n));
-// }
-// catch
-// {
-//     Console.WriteLine("Проверьте правильность введенных данных");
-// }
+}
+catch
+{
+    Console.WriteLine("Проверьте правильность введенных данных");
+}
