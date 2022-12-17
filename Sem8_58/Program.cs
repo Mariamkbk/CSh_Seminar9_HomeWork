@@ -33,36 +33,34 @@ void PrintArray(int[,] arr)
 int[,] MultiplyMatrixes(int[,] arr, int[,] Arr)
 {
     int[,] resultArray = new int[Arr.GetLength(0), arr.GetLength(1)];
-    int k = 0;
-    int j = 0;
     int i = 0;
+    int j = 0;
+    int k = 0;
     int l = 0;
-    int sum = 0;
-    int res = 0;
     int m = 0;
     int n = 0;
+    int res = 0;
     while (k < Arr.GetLength(0))
     {
         while (j < arr.GetLength(1))
         {
             while (i < arr.GetLength(0))
             {
-                res = arr[i, j] * Arr[k, l];
-                sum += res;
+                res+= arr[i, j] * Arr[k, l];
                 i++;
                 l++;
             }
-            resultArray[m, n] = sum;
+            resultArray[m, n] = res;
             n++;
             j++;
-            sum = 0;
+            res = 0;
             i = 0;
             l = 0;
         }
         k++;
         m++;
-        j=0;
-        n=0;
+        j = 0;
+        n = 0;
     }
     return resultArray;
 }
@@ -83,10 +81,13 @@ try
     Console.WriteLine("Вторая матрица: ");
     PrintArray(secondArray);
     if (m == l)
+    {
+        Console.WriteLine("Произведение предыдущих двух матриц: ");
         PrintArray(MultiplyMatrixes(firstArray, secondArray));
+    }
     else
         Console.WriteLine(
-            "Умножение невоможно, так как данные матрицы несовместимы. Убедитесь, что количество столбцов 1 матрицы равно количеству строк 2 матрицы"
+            "Заданные матрицы несовместимы. Убедитесь, что количество столбцов 1 матрицы равно количеству строк 2 матрицы"
         );
 }
 catch
