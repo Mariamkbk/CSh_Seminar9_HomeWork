@@ -3,13 +3,18 @@
 // N = 5 -> "5, 4, 3, 2, 1"
 // N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
 
+string LineOfNumbers(int N)
+{
+    if (N == 1) return "1";
+    return N + ", " + LineOfNumbers(N - 1);
+}
+try
+{
 Console.WriteLine("Введите целое число");
 int N = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine($"сумма числа от 1 до {N}: {SummaRec(N)}");
-
-int SummaRec(int N)
+Console.WriteLine($"Ряд чисел от {N} до 1: {LineOfNumbers(N)}");
+}
+catch
 {
-    if (N == 0)
-        return 0;
-    return N % 10 + SummaRec(N / 10);
+    Console.WriteLine("Проверьте правильность введенных данных");
 }
